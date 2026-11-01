@@ -1,39 +1,68 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Ordem Paranormal</title>
-
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ORDEM PARANORMAL</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-
 <body>
+  <header>
+    <h1>ORDEM PARANORMAL</h1>
+    <p>ACESSO RESTRITO</p>
+  </header>
 
-    <header>
-        <div class="logo">ORDEM PARANORMAL</div>
-        <div class="status">ACESSO RESTRITO</div>
-    </header>
+  <main>
+    <h2>IDENTIFICAÇÃO DO AGENTE</h2>
 
-    <main>
-        <div class="tag">SISTEMA DE REGISTRO DE AGENTES</div>
+    <section id="login">
+      <input id="email" type="email" placeholder="E-mail">
+      <input id="password" type="password" placeholder="Senha">
 
-        <h1>ORDEM<br>PARANORMAL</h1>
+      <button onclick="entrar()">ENTRAR</button>
+      <button onclick="cadastrar()">CRIAR CONTA</button>
 
-        <p class="description">
-            Gerenciamento de fichas e registros de personagens.
-        </p>
+      <p id="mensagem"></p>
+    </section>
+  </main>
 
-        <a href="#" class="access">
-            ACESSAR SISTEMA
-        </a>
+  <footer>DOCUMENTO CONFIDENCIAL // ORDO REALITAS</footer>
 
-        <footer>
-            DOCUMENTO CONFIDENCIAL // ORDO REALITAS
-        </footer>
-    </main>
+  <script>
+    const SUPABASE_URL = "https://czfovboidaumtxfotavp.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_0BguVUbzLBubXwW50btPAg_8I9XlQnG";
 
+    const supabaseClient = supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+
+    async function entrar() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      const { error } = await supabaseClient.auth.signInWithPassword({
+        email,
+        password
+      });
+
+      document.getElementById("mensagem").textContent =
+        error ? error.message : "ACESSO AUTORIZADO.";
+    }
+
+    async function cadastrar() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      const { error } = await supabaseClient.auth.signUp({
+        email,
+        password
+      });
+
+      document.getElementById("mensagem").textContent =
+        error ? error.message : "CADASTRO SOLICITADO. VERIFIQUE SEU E-MAIL.";
+    }
+  </script>
 </body>
 </html>
