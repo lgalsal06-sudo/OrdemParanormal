@@ -1,0 +1,87 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Roboto:wght@400;500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #090909;
+    color: #e8e8e8;
+    font-family: 'Roboto', sans-serif;
+    min-height: 100vh;
+}
+
+header {
+    padding: 24px 8%;
+    border-bottom: 1px solid #42151b;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #b82938;
+    font-family: 'Special Elite', cursive;
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+.status {
+    color: #a83b45;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+main {
+    max-width: 900px;
+    margin: 100px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.tag {
+    color: #b82938;
+    letter-spacing: 4px;
+    font-size: 12px;
+    margin-bottom: 25px;
+}
+
+h1 {
+    font-family: 'Special Elite', cursive;
+    font-size: clamp(36px, 7vw, 70px);
+    letter-spacing: 4px;
+    color: #f0e8e8;
+    margin-bottom: 20px;
+}
+
+.description {
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 50px;
+}
+
+.access {
+    display: inline-block;
+    background: #8f1d2b;
+    color: white;
+    text-decoration: none;
+    padding: 15px 35px;
+    letter-spacing: 2px;
+    font-size: 12px;
+    transition: .3s;
+}
+
+.access:hover {
+    background: #c52b3d;
+}
+
+footer {
+    text-align: center;
+    color: #555;
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin-top: 100px;
+}
