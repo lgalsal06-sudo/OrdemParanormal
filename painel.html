@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel | ORDEM PARANORMAL</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <header>
+    <h1>ORDEM PARANORMAL</h1>
+    <p>TERMINAL DE AGENTES</p>
+  </header>
+
+  <main>
+    <h2>PAINEL DE CONTROLE</h2>
+
+    <p class="welcome" id="agente">Identificando agente...</p>
+
+    <section class="options">
+      <button onclick="abrirFicha('op1')">
+        ORDEM PARANORMAL I
+      </button>
+
+      <button onclick="abrirFicha('op2')">
+        ORDEM PARANORMAL II
+      </button>
+    </section>
+
+    <button class="access" onclick="sair()">
+      ENCERRAR SESSÃO
+    </button>
+  </main>
+
+  <footer>
+    DOCUMENTO CONFIDENCIAL // ORDO REALITAS
+  </footer>
+
+  <script>
+    const SUPABASE_URL = "https://czfovboidaumtxfotavp.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_0BguVUbzLBubXwW50btPAg_8I9XlQnG";
+
+    const supabaseClient = supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+
+    async function verificarAgente() {
+      const { data, error } = await supabaseClient.auth.getUser();
+
+      if (error || !data.user) {
+        window.location.href = "index.html";
+        return;
+      }
+
+      document.getElementById("agente").textContent =
+        "AGENTE: " + data.user.email;
+    }
+
+    async function sair() {
+      await supabaseClient.auth.signOut();
+      window.location.href = "index.html";
+    }
+
+    function abrirFicha(tipo) {
+      alert("MÓDULO EM DESENVOLVIMENTO: " + tipo.toUpperCase());
+    }
+
+    verificarAgente();
+  </script>
+
+</body>
+</html>
